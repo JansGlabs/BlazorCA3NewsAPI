@@ -1389,11 +1389,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lafaman\\Desktop\\lafamans\\ITT\\Year4\\EAD\\CA3\\NewsAPI\\NewsAPI\\NewsAPI.csproj",
+      "projectUniqueName": "C:\\Users\\lafaman\\Desktop\\lafamans\\ITT\\Year4\\EAD\\CA3\\BlazorCA3NewsAPI\\NewsAPI\\NewsAPI\\NewsAPI.csproj",
       "projectName": "NewsAPI",
-      "projectPath": "C:\\Users\\lafaman\\Desktop\\lafamans\\ITT\\Year4\\EAD\\CA3\\NewsAPI\\NewsAPI\\NewsAPI.csproj",
+      "projectPath": "C:\\Users\\lafaman\\Desktop\\lafamans\\ITT\\Year4\\EAD\\CA3\\BlazorCA3NewsAPI\\NewsAPI\\NewsAPI\\NewsAPI.csproj",
       "packagesPath": "C:\\Users\\lafaman\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lafaman\\Desktop\\lafamans\\ITT\\Year4\\EAD\\CA3\\NewsAPI\\NewsAPI\\obj\\",
+      "outputPath": "C:\\Users\\lafaman\\Desktop\\lafamans\\ITT\\Year4\\EAD\\CA3\\BlazorCA3NewsAPI\\NewsAPI\\NewsAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "F:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

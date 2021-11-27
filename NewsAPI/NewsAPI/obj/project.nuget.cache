@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ST06bm7jjK+tuKZlsCDTwgxFEUspycenatdOOvLQFXYfyqsm0X5QfP0nKj7t9nJK7zCL4cSHorcaktNE1Q4Ulg==",
+  "dgSpecHash": "86sV2Bc6uhc5D4JQZAlItNIIVEBknfss2y3/NUjqSvRzUOg2NVuHfN9vd6xJGzaG7rR2smRJeiDXSN8Y142HOg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lafaman\\Desktop\\lafamans\\ITT\\Year4\\EAD\\CA3\\NewsAPI\\NewsAPI\\NewsAPI.csproj",
+  "projectFilePath": "C:\\Users\\lafaman\\Desktop\\lafamans\\ITT\\Year4\\EAD\\CA3\\BlazorCA3NewsAPI\\NewsAPI\\NewsAPI\\NewsAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lafaman\\.nuget\\packages\\microsoft.aspnetcore.authorization\\5.0.12\\microsoft.aspnetcore.authorization.5.0.12.nupkg.sha512",
     "C:\\Users\\lafaman\\.nuget\\packages\\microsoft.aspnetcore.components\\5.0.12\\microsoft.aspnetcore.components.5.0.12.nupkg.sha512",

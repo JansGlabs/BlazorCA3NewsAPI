@@ -9,11 +9,10 @@
 }
 else
 {
-    <div>
-        <button class="btn btn-block btn-info" @onclick="Main">News</button>
-    </div>
     <div class="mb-3">
-        <button class="btn btn-block btn-primary" @onclick="Top">Hot News</button>
+        <button class="btn btn-outline-dark" @onclick="Main">All News</button>
+        <button class="btn btn-outline-dark" @onclick="Top">Hot News</button>
+        <button class="btn btn-outline-dark" @onclick="Search">Sport</button>
     </div>
     <div class="mb-5">
         <input id="searchFor" class="p-2" @bind="searchFor" placeholder="Search for key words. . ." />

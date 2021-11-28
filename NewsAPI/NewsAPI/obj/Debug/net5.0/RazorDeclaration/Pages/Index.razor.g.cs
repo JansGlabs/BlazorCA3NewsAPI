@@ -91,7 +91,7 @@ using NewsAPI.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 45 "C:\Users\lafaman\Desktop\lafamans\ITT\Year4\EAD\CA3\BlazorCA3NewsAPI\NewsAPI\NewsAPI\Pages\Index.razor"
+#line 44 "C:\Users\lafaman\Desktop\lafamans\ITT\Year4\EAD\CA3\BlazorCA3NewsAPI\NewsAPI\NewsAPI\Pages\Index.razor"
        
     private Root news;
     private string errorMessage;

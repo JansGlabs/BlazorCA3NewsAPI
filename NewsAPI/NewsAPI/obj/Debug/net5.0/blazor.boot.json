@@ -197,11 +197,11 @@
       "mscorlib.dll": "sha256-+dB3Q0YubUPF1oZDMVZn6ZCiRkzRomtLoq51T5FocJk=",
       "netstandard.dll": "sha256-dOHF0zANIyA4WS496iWrAkTuEFWSWrXJjZj2pQQHrMA=",
       "System.Private.CoreLib.dll": "sha256-C96+zv+mWW0XzMG520oRgAG1lHVY8xzWGc6oc6rFjws=",
-      "NewsAPI.dll": "sha256-n7cUrh8RuhKyLEMqYqRfguvSFNFx8c0OaEYWLhgBsig="
+      "NewsAPI.dll": "sha256-nqC0yjNcO\/bokHUaM6\/4DtsX2lDZ4b1RSSzxPZk2RUI="
     },
     "lazyAssembly": null,
     "pdb": {
-      "NewsAPI.pdb": "sha256-qiXGXMynDoeDA5C0QhekQD+CUv7MRaYo6nfdTQxw+ts="
+      "NewsAPI.pdb": "sha256-tKmThEw7YUOV58XSW3YMEgljM4S7BXmoQU1zby3o3RI="
     },
     "runtime": {
       "dotnet.timezones.blat": "sha256-ir9YCVnnk7popgsYUkvitfGA4WpkP1ydPh\/ENHnxGys=",

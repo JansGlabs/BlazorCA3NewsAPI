@@ -91,12 +91,12 @@ using NewsAPI.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 44 "C:\Users\lafaman\Desktop\lafamans\ITT\Year4\EAD\CA3\BlazorCA3NewsAPI\NewsAPI\NewsAPI\Pages\Index.razor"
+#line 52 "C:\Users\lafaman\Desktop\lafamans\ITT\Year4\EAD\CA3\BlazorCA3NewsAPI\NewsAPI\NewsAPI\Pages\Index.razor"
        
     private Root news;
     private string errorMessage;
-    private bool found;
     private string searchFor;
+    private bool found;
 
     private async Task GetNewsAsync()
     {
@@ -111,6 +111,20 @@ using NewsAPI.Shared;
         }
     }
 
+    private async Task GetTopNewsAsync()
+    {
+        try
+        {
+            news = await Http.GetFromJsonAsync<Root>("https://api.thenewsapi.com/v1/news/top?api_token=kjrZiWCktIwmyvqCgqpox87RCmhIT8k0qgwyx1pW&language=en");
+            errorMessage = String.Empty;
+        }
+        catch (Exception e)
+        {
+            errorMessage = e.Message;
+        }
+    }
+
+
     private async Task GetSearchNewsAsync()
     {
         try
@@ -123,19 +137,6 @@ using NewsAPI.Shared;
         catch (Exception e)
         {
             found = false;
-            errorMessage = e.Message;
-        }
-    }
-
-    private async Task GetTopNewsAsync()
-    {
-        try
-        {
-            news = await Http.GetFromJsonAsync<Root>("https://api.thenewsapi.com/v1/news/top?api_token=kjrZiWCktIwmyvqCgqpox87RCmhIT8k0qgwyx1pW&language=en");
-            errorMessage = String.Empty;
-        }
-        catch (Exception e)
-        {
             errorMessage = e.Message;
         }
     }

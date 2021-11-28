@@ -90,7 +90,7 @@ using NewsAPI.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 23 "C:\Users\lafaman\Desktop\lafamans\ITT\Year4\EAD\CA3\BlazorCA3NewsAPI\NewsAPI\NewsAPI\Shared\NavMenu.razor"
+#line 22 "C:\Users\lafaman\Desktop\lafamans\ITT\Year4\EAD\CA3\BlazorCA3NewsAPI\NewsAPI\NewsAPI\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 

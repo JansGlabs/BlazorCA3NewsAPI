@@ -91,13 +91,14 @@ using NewsAPI.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 47 "C:\Users\lafaman\Desktop\lafamans\ITT\Year4\EAD\CA3\BlazorCA3NewsAPI\NewsAPI\NewsAPI\Pages\Index.razor"
+#line 55 "C:\Users\lafaman\Desktop\lafamans\ITT\Year4\EAD\CA3\BlazorCA3NewsAPI\NewsAPI\NewsAPI\Pages\Index.razor"
        
     private Root news;
     private string mainUrl = "https://api.thenewsapi.com/v1/news/";
     private string apiKey = "?api_token=kjrZiWCktIwmyvqCgqpox87RCmhIT8k0qgwyx1pW";
     private string errorMessage;
     private string searchFor;
+    private int pageNews = 1;
     private bool topNews;
     private bool found;
 
@@ -106,7 +107,7 @@ using NewsAPI.Shared;
     {
         try
         {
-            news = await Http.GetFromJsonAsync<Root>(mainUrl+"all"+apiKey+"&language=en");
+            news = await Http.GetFromJsonAsync<Root>(mainUrl + "all" + apiKey + "&language=en&page=" + pageNews);
             found = false;
             topNews = false;
             errorMessage = String.Empty;
@@ -121,7 +122,7 @@ using NewsAPI.Shared;
     {
         try
         {
-            news = await Http.GetFromJsonAsync<Root>(mainUrl+"top"+apiKey+"&language=en");
+            news = await Http.GetFromJsonAsync<Root>(mainUrl + "top" + apiKey + "&language=en&page=" + pageNews);
             found = false;
             topNews = true;
             errorMessage = String.Empty;
@@ -138,7 +139,7 @@ using NewsAPI.Shared;
     {
         try
         {
-            news = await Http.GetFromJsonAsync<Root>(mainUrl+"all"+apiKey+"&search="+searchFor);
+            news = await Http.GetFromJsonAsync<Root>(mainUrl + "all" + apiKey + "&search=" + searchFor + "&page=" + pageNews);
             found = true;
             topNews = false;
             errorMessage = String.Empty;
@@ -171,6 +172,71 @@ using NewsAPI.Shared;
     {
         await GetSearchNewsAsync();
         StateHasChanged();
+    }
+
+    public async void Previous()
+    {
+        if (found)
+        {
+            if (pageNews >= 2)
+            {
+                pageNews--;
+            }
+            else
+            {
+                pageNews = 1;
+            }
+            Search();
+            StateHasChanged();
+        }
+        else if (topNews)
+        {
+            if (pageNews >= 2)
+            {
+                pageNews--;
+            }
+            else
+            {
+                pageNews = 1;
+            }
+            Top();
+            StateHasChanged();
+        }
+        else
+        {
+            if (pageNews >= 2)
+            {
+                pageNews--;
+            }
+            else
+            {
+                pageNews = 1;
+            }
+            Main();
+            StateHasChanged();
+        }
+    }
+
+    public async void Next()
+    {
+        if (found)
+        {
+            pageNews++;
+            Search();
+            StateHasChanged();
+        }
+        else if (topNews)
+        {
+            pageNews++;
+            Top();
+            StateHasChanged();
+        }
+        else
+        {
+            pageNews++;
+            Main();
+            StateHasChanged();
+        }
     }
 
     public class Meta

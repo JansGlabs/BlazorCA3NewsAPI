@@ -31,16 +31,24 @@ else
         </div>
     </div>
     <div class="container">
-        @foreach (var topic in news.data)
-        {
-            <h5 class="font-weight-bold">@topic.title</h5>
-            <div>
-                <a href="https://@topic.source" target="_blank">Source: @topic.source</a>
-                <small>@topic.published_at</small>
+        <div class="row">
+            <div class="col-sm-12">
+                @foreach (var topic in news.data)
+                {
+                    <h5 class="font-weight-bold">@topic.title</h5>
+                    <div>
+                        <a href="https://@topic.source" target="_blank">Source: @topic.source</a>
+                        <small>@topic.published_at</small>
+                    </div>
+                    <p class="mb-5">@topic.description</p>
+                    <hr />
+                }
             </div>
-            <p class="mb-5">@topic.description</p>
-            <hr />
-        }
+            <div class="mb-5 d-block mx-auto text-center">
+                <button class="btn btn-outline-dark" @onclick="Previous">Previous</button>
+                <button class="btn btn-outline-dark" @onclick="Next">Next</button>
+            </div>
+        </div>
     </div>
 }
 
@@ -50,6 +58,7 @@ else
     private string apiKey = "?api_token=kjrZiWCktIwmyvqCgqpox87RCmhIT8k0qgwyx1pW";
     private string errorMessage;
     private string searchFor;
+    private int pageNews = 1;
     private bool topNews;
     private bool found;
 
@@ -58,7 +67,7 @@ else
     {
         try
         {
-            news = await Http.GetFromJsonAsync<Root>(mainUrl+"all"+apiKey+"&language=en");
+            news = await Http.GetFromJsonAsync<Root>(mainUrl + "all" + apiKey + "&language=en&page=" + pageNews);
             found = false;
             topNews = false;
             errorMessage = String.Empty;
@@ -73,7 +82,7 @@ else
     {
         try
         {
-            news = await Http.GetFromJsonAsync<Root>(mainUrl+"top"+apiKey+"&language=en");
+            news = await Http.GetFromJsonAsync<Root>(mainUrl + "top" + apiKey + "&language=en&page=" + pageNews);
             found = false;
             topNews = true;
             errorMessage = String.Empty;
@@ -90,7 +99,7 @@ else
     {
         try
         {
-            news = await Http.GetFromJsonAsync<Root>(mainUrl+"all"+apiKey+"&search="+searchFor);
+            news = await Http.GetFromJsonAsync<Root>(mainUrl + "all" + apiKey + "&search=" + searchFor + "&page=" + pageNews);
             found = true;
             topNews = false;
             errorMessage = String.Empty;
@@ -123,6 +132,71 @@ else
     {
         await GetSearchNewsAsync();
         StateHasChanged();
+    }
+
+    public async void Previous()
+    {
+        if (found)
+        {
+            if (pageNews >= 2)
+            {
+                pageNews--;
+            }
+            else
+            {
+                pageNews = 1;
+            }
+            Search();
+            StateHasChanged();
+        }
+        else if (topNews)
+        {
+            if (pageNews >= 2)
+            {
+                pageNews--;
+            }
+            else
+            {
+                pageNews = 1;
+            }
+            Top();
+            StateHasChanged();
+        }
+        else
+        {
+            if (pageNews >= 2)
+            {
+                pageNews--;
+            }
+            else
+            {
+                pageNews = 1;
+            }
+            Main();
+            StateHasChanged();
+        }
+    }
+
+    public async void Next()
+    {
+        if (found)
+        {
+            pageNews++;
+            Search();
+            StateHasChanged();
+        }
+        else if (topNews)
+        {
+            pageNews++;
+            Top();
+            StateHasChanged();
+        }
+        else
+        {
+            pageNews++;
+            Main();
+            StateHasChanged();
+        }
     }
 
     public class Meta

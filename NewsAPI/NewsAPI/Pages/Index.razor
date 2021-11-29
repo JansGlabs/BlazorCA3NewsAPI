@@ -26,35 +26,28 @@ else
             <button class="btn btn-outline-dark" @onclick="Top">Hot News</button>
         </div>
         <div>
-            <input id="searchFor" class="p-2" @bind="searchFor" placeholder="Search for key words. . ." />
-            <button class="p-2 btn btn-success" @onclick="Search">Search</button>
+            <input id="searchFor" class="p-1" @bind="searchFor" placeholder="Search for key words. . ." />
+            <button class="btn btn-success" @onclick="Search">Search</button>
         </div>
     </div>
-    <table class="table table-hover">
-        <thead class="thead-light">
-            <tr>
-                <th>Published</th>
-                <th>Title</th>
-                <th>Summary</th>
-                <th>Source</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var topic in news.data)
-            {
-            <tr>
-                <td>@topic.published_at</td>
-                <td>@topic.title</td>
-                <td>@topic.description</td>
-                <td>@topic.source</td>
-            </tr>
-            }
-        </tbody>
-    </table>
+    <div class="container">
+        @foreach (var topic in news.data)
+        {
+            <h5 class="font-weight-bold">@topic.title</h5>
+            <div>
+                <a href="https://@topic.source" target="_blank">Source: @topic.source</a>
+                <small>@topic.published_at</small>
+            </div>
+            <p class="mb-5">@topic.description</p>
+            <hr />
+        }
+    </div>
 }
 
 @code {
     private Root news;
+    private string mainUrl = "https://api.thenewsapi.com/v1/news/";
+    private string apiKey = "?api_token=kjrZiWCktIwmyvqCgqpox87RCmhIT8k0qgwyx1pW";
     private string errorMessage;
     private string searchFor;
     private bool topNews;
@@ -65,7 +58,8 @@ else
     {
         try
         {
-            news = await Http.GetFromJsonAsync<Root>("https://api.thenewsapi.com/v1/news/all?api_token=kjrZiWCktIwmyvqCgqpox87RCmhIT8k0qgwyx1pW&language=en");
+            news = await Http.GetFromJsonAsync<Root>(mainUrl+"all"+apiKey+"&language=en");
+            found = false;
             topNews = false;
             errorMessage = String.Empty;
         }
@@ -79,7 +73,8 @@ else
     {
         try
         {
-            news = await Http.GetFromJsonAsync<Root>("https://api.thenewsapi.com/v1/news/top?api_token=kjrZiWCktIwmyvqCgqpox87RCmhIT8k0qgwyx1pW&language=en");
+            news = await Http.GetFromJsonAsync<Root>(mainUrl+"top"+apiKey+"&language=en");
+            found = false;
             topNews = true;
             errorMessage = String.Empty;
         }
@@ -95,8 +90,7 @@ else
     {
         try
         {
-            string url = "https://api.thenewsapi.com/v1/news/all?api_token=kjrZiWCktIwmyvqCgqpox87RCmhIT8k0qgwyx1pW&search=" + searchFor;
-            news = await Http.GetFromJsonAsync<Root>(url);
+            news = await Http.GetFromJsonAsync<Root>(mainUrl+"all"+apiKey+"&search="+searchFor);
             found = true;
             topNews = false;
             errorMessage = String.Empty;

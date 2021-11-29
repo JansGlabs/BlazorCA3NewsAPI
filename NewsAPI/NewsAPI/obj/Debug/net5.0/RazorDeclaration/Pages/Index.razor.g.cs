@@ -91,9 +91,11 @@ using NewsAPI.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 56 "C:\Users\lafaman\Desktop\lafamans\ITT\Year4\EAD\CA3\BlazorCA3NewsAPI\NewsAPI\NewsAPI\Pages\Index.razor"
+#line 47 "C:\Users\lafaman\Desktop\lafamans\ITT\Year4\EAD\CA3\BlazorCA3NewsAPI\NewsAPI\NewsAPI\Pages\Index.razor"
        
     private Root news;
+    private string mainUrl = "https://api.thenewsapi.com/v1/news/";
+    private string apiKey = "?api_token=kjrZiWCktIwmyvqCgqpox87RCmhIT8k0qgwyx1pW";
     private string errorMessage;
     private string searchFor;
     private bool topNews;
@@ -104,7 +106,8 @@ using NewsAPI.Shared;
     {
         try
         {
-            news = await Http.GetFromJsonAsync<Root>("https://api.thenewsapi.com/v1/news/all?api_token=kjrZiWCktIwmyvqCgqpox87RCmhIT8k0qgwyx1pW&language=en");
+            news = await Http.GetFromJsonAsync<Root>(mainUrl+"all"+apiKey+"&language=en");
+            found = false;
             topNews = false;
             errorMessage = String.Empty;
         }
@@ -118,7 +121,8 @@ using NewsAPI.Shared;
     {
         try
         {
-            news = await Http.GetFromJsonAsync<Root>("https://api.thenewsapi.com/v1/news/top?api_token=kjrZiWCktIwmyvqCgqpox87RCmhIT8k0qgwyx1pW&language=en");
+            news = await Http.GetFromJsonAsync<Root>(mainUrl+"top"+apiKey+"&language=en");
+            found = false;
             topNews = true;
             errorMessage = String.Empty;
         }
@@ -134,8 +138,7 @@ using NewsAPI.Shared;
     {
         try
         {
-            string url = "https://api.thenewsapi.com/v1/news/all?api_token=kjrZiWCktIwmyvqCgqpox87RCmhIT8k0qgwyx1pW&search=" + searchFor;
-            news = await Http.GetFromJsonAsync<Root>(url);
+            news = await Http.GetFromJsonAsync<Root>(mainUrl+"all"+apiKey+"&search="+searchFor);
             found = true;
             topNews = false;
             errorMessage = String.Empty;

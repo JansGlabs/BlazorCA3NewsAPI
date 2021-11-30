@@ -174,7 +174,7 @@ using NewsAPI.Shared;
         StateHasChanged();
     }
 
-    public async void Previous()
+    public void Previous()
     {
         if (found)
         {
@@ -217,7 +217,7 @@ using NewsAPI.Shared;
         }
     }
 
-    public async void Next()
+    public void Next()
     {
         if (found)
         {

@@ -27,8 +27,12 @@ else
             <button class="btn btn-outline-dark" @onclick="Top">Hot News</button>
         </div>
         <div>
-            <input id="searchFor" class="p-1" @bind="searchFor" placeholder="Search for key words. . ." />
-            <button class="btn btn-success" @onclick="Search">Search</button>
+            <EditForm Model="@currentSearch" OnValidSubmit="@SubmitValidate">
+                <DataAnnotationsValidator />
+                <input id="searchFor" class="p-1" @bind-value="currentSearch.SearchInput" placeholder="Search for key words. . ." />
+                <button class="btn btn-success" @onclick="Search">Search</button>
+                <ValidationMessage For="@(()=> currentSearch.SearchInput)" />
+            </EditForm>
         </div>
     </div>
     <div class="container">
@@ -58,12 +62,10 @@ else
     private string mainUrl = "https://api.thenewsapi.com/v1/news/";
     private string apiKey = "?api_token=kjrZiWCktIwmyvqCgqpox87RCmhIT8k0qgwyx1pW";
     private string errorMessage;
-    private string searchFor;
     private int pageNews = 1;
     private bool topNews;
     private bool found;
-
-
+    
     private async Task GetNewsAsync()
     {
         try
@@ -100,7 +102,7 @@ else
     {
         try
         {
-            news = await Http.GetFromJsonAsync<Root>(mainUrl + "all" + apiKey + "&search=" + searchFor + "&page=" + pageNews);
+            news = await Http.GetFromJsonAsync<Root>(mainUrl + "all" + apiKey + "&search=" + currentSearch.SearchInput + "&language=en&page=" + pageNews);
             found = true;
             topNews = false;
             errorMessage = String.Empty;
@@ -147,6 +149,7 @@ else
             {
                 pageNews = 1;
             }
+            currentSearch = searchFor;
             Search();
             StateHasChanged();
         }
@@ -183,6 +186,7 @@ else
         if (found)
         {
             pageNews++;
+            currentSearch = searchFor;
             Search();
             StateHasChanged();
         }
@@ -198,6 +202,15 @@ else
             Main();
             StateHasChanged();
         }
+    }
+
+    private ValidSearch currentSearch = new ValidSearch();
+    private ValidSearch searchFor = null;
+
+    private void SubmitValidate()
+    {
+        searchFor = currentSearch;
+        currentSearch = new ValidSearch();
     }
 
     public class Meta

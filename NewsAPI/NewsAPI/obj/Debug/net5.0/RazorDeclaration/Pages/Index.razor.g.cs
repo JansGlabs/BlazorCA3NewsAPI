@@ -98,18 +98,16 @@ using ValidateSearch;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 56 "C:\Users\lafaman\Desktop\lafamans\ITT\Year4\EAD\CA3\BlazorCA3NewsAPI\NewsAPI\NewsAPI\Pages\Index.razor"
+#line 60 "C:\Users\lafaman\Desktop\lafamans\ITT\Year4\EAD\CA3\BlazorCA3NewsAPI\NewsAPI\NewsAPI\Pages\Index.razor"
        
     private Root news;
     private string mainUrl = "https://api.thenewsapi.com/v1/news/";
     private string apiKey = "?api_token=kjrZiWCktIwmyvqCgqpox87RCmhIT8k0qgwyx1pW";
     private string errorMessage;
-    private string searchFor;
     private int pageNews = 1;
     private bool topNews;
     private bool found;
-
-
+    //do comments in code
     private async Task GetNewsAsync()
     {
         try
@@ -146,7 +144,7 @@ using ValidateSearch;
     {
         try
         {
-            news = await Http.GetFromJsonAsync<Root>(mainUrl + "all" + apiKey + "&search=" + searchFor + "&page=" + pageNews);
+            news = await Http.GetFromJsonAsync<Root>(mainUrl + "all" + apiKey + "&search=" + currentSearch.SearchInput + "&language=en&page=" + pageNews);
             found = true;
             topNews = false;
             errorMessage = String.Empty;
@@ -193,6 +191,7 @@ using ValidateSearch;
             {
                 pageNews = 1;
             }
+            currentSearch = searchFor;
             Search();
             StateHasChanged();
         }
@@ -229,6 +228,7 @@ using ValidateSearch;
         if (found)
         {
             pageNews++;
+            currentSearch = searchFor;
             Search();
             StateHasChanged();
         }
@@ -244,6 +244,15 @@ using ValidateSearch;
             Main();
             StateHasChanged();
         }
+    }
+
+    private ValidSearch currentSearch = new ValidSearch();
+    private ValidSearch searchFor = null;
+
+    private void SubmitValidate()
+    {
+        searchFor = currentSearch;
+        currentSearch = new ValidSearch();
     }
 
     public class Meta

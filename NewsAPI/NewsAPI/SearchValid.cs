@@ -12,7 +12,7 @@ namespace ValidateSearch
 
         public override string ToString()
         {
-            return $"Error {SearchInput}";
+            return $"{SearchInput}";
         }
     }
 }

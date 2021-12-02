@@ -107,7 +107,8 @@ using ValidateSearch;
     private int pageNews = 1;
     private bool topNews;
     private bool found;
-    //do comments in code
+    
+    //getting all news from api english only in english and starting 1st page with root property got from json to c# convertion
     private async Task GetNewsAsync()
     {
         try
@@ -122,7 +123,7 @@ using ValidateSearch;
             errorMessage = e.Message;
         }
     }
-
+    //getting hot news similar as main news, edited url
     private async Task GetTopNewsAsync()
     {
         try
@@ -138,8 +139,7 @@ using ValidateSearch;
             errorMessage = e.Message;
         }
     }
-
-
+    //getting all news with search input from user
     private async Task GetSearchNewsAsync()
     {
         try
@@ -156,29 +156,32 @@ using ValidateSearch;
         }
     }
 
+    //displaying data on webpage as default when used
     protected override async Task OnInitializedAsync()
     {
         await GetNewsAsync();
     }
-
+    //main news and hot news filter
+    //calling all news data and updating main page
     public async void Main()
     {
         await GetNewsAsync();
         StateHasChanged();
     }
-
+    //hot news
     public async void Top()
     {
         await GetTopNewsAsync();
         StateHasChanged();
     }
-
+    //searched news - search function
     public async void Search()
     {
         await GetSearchNewsAsync();
         StateHasChanged();
     }
 
+    //paginator function for all news, hot and any searched topic, cannot be lower than 1st page
     public void Previous()
     {
         if (found)
@@ -246,6 +249,7 @@ using ValidateSearch;
         }
     }
 
+    //using c# searchvalid for input in search
     private ValidSearch currentSearch = new ValidSearch();
     private ValidSearch searchFor = null;
 
@@ -255,6 +259,7 @@ using ValidateSearch;
         currentSearch = new ValidSearch();
     }
 
+    //api from json to c# to get properties for api calls
     public class Meta
     {
         public int found { get; set; }

@@ -66,6 +66,7 @@ else
     private bool topNews;
     private bool found;
     
+    //getting all news from api english only in english and starting 1st page with root property got from json to c# convertion
     private async Task GetNewsAsync()
     {
         try
@@ -80,7 +81,7 @@ else
             errorMessage = e.Message;
         }
     }
-
+    //getting hot news similar as main news, edited url
     private async Task GetTopNewsAsync()
     {
         try
@@ -96,8 +97,7 @@ else
             errorMessage = e.Message;
         }
     }
-
-
+    //getting all news with search input from user
     private async Task GetSearchNewsAsync()
     {
         try
@@ -114,29 +114,32 @@ else
         }
     }
 
+    //displaying data on webpage as default when used
     protected override async Task OnInitializedAsync()
     {
         await GetNewsAsync();
     }
-
+    //main news and hot news filter
+    //calling all news data and updating main page
     public async void Main()
     {
         await GetNewsAsync();
         StateHasChanged();
     }
-
+    //hot news
     public async void Top()
     {
         await GetTopNewsAsync();
         StateHasChanged();
     }
-
+    //searched news - search function
     public async void Search()
     {
         await GetSearchNewsAsync();
         StateHasChanged();
     }
 
+    //paginator function for all news, hot and any searched topic, cannot be lower than 1st page
     public void Previous()
     {
         if (found)
@@ -204,6 +207,7 @@ else
         }
     }
 
+    //using c# searchvalid for input in search
     private ValidSearch currentSearch = new ValidSearch();
     private ValidSearch searchFor = null;
 
@@ -213,6 +217,7 @@ else
         currentSearch = new ValidSearch();
     }
 
+    //api from json to c# to get properties for api calls
     public class Meta
     {
         public int found { get; set; }

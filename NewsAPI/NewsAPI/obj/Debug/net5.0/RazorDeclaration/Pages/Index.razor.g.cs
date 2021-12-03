@@ -101,8 +101,8 @@ using ValidateSearch;
 #line 60 "C:\Users\lafaman\Desktop\lafamans\ITT\Year4\EAD\CA3\BlazorCA3NewsAPI\NewsAPI\NewsAPI\Pages\Index.razor"
        
     private Root news;
-    private string mainUrl = "https://api.thenewsapi.com/v1/news/";
-    private string apiKey = "?api_token=kjrZiWCktIwmyvqCgqpox87RCmhIT8k0qgwyx1pW";
+    private const string mainUrl = "https://api.thenewsapi.com/v1/news/";
+    private const string apiKey = "?api_token=kjrZiWCktIwmyvqCgqpox87RCmhIT8k0qgwyx1pW";
     private string errorMessage;
     private int pageNews = 1;
     private bool topNews;
